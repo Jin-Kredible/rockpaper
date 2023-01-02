@@ -1,3 +1,11 @@
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+const buttons = document.querySelectorAll(".btn");
+let result = document.querySelector("#result");
+let compScoreDiv = document.querySelector("#compScore");
+let playerScoreDiv = document.querySelector("#playerScore");
+let compScore = 0;
+let playerScore = 0;
 function getComputerChoice() {
     let rps = [
         "rock",
@@ -9,21 +17,45 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     switch(playerSelection){
         case "rock":
-            if (computerSelection === "scissors") return `You Win ${playerSelection} beats ${computerSelection}`;
-            else if (computerSelection === "paper") return `You Lose ${computerSelection} beats ${playerSelection}`;
-            else return "it's a tie";
+            if (computerSelection === "scissors") {
+                playerScore++;
+                return `You Win ${playerSelection} beats ${computerSelection}`;
+            } else if (computerSelection === "paper") {
+                compScore++;
+                return `You Lose ${computerSelection} beats ${playerSelection}`;
+            } else return "it's a tie";
         case "paper":
-            if (computerSelection === "rock") return `You Win ${playerSelection} beats ${computerSelection}`;
-            else if (computerSelection === "scissors") return `You Lose ${computerSelection} beats ${playerSelection}`;
+            if (computerSelection === "rock") {
+                playerScore++;
+                return `You Win ${playerSelection} beats ${computerSelection}`;
+            } else if (computerSelection === "scissors") {
+                compScore++;
+                return `You Lose ${computerSelection} beats ${playerSelection}`;
+            }
         case "scissors":
-            if (computerSelection === "paper") return `You Win ${playerSelection} beats ${computerSelection}`;
-            else if (computerSelection === "rock") return `You Lose ${computerSelection} beats ${playerSelection}`;
+            if (computerSelection === "paper") {
+                playerScore++;
+                return `You Win ${playerSelection} beats ${computerSelection}`;
+            } else if (computerSelection === "rock") {
+                compScore++;
+                return `You Lose ${computerSelection} beats ${playerSelection}`;
+            }
         default:
             return "It's tie";
     }
 }
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+console.log(buttons);
+buttons.forEach((button)=>{
+    button.addEventListener("click", ()=>{
+        if (playerScore < 5 && compScore < 5) {
+            const playresult = playRound(button.textContent, getComputerChoice());
+            result.textContent = playresult;
+            playerScoreDiv.textContent = playerScore;
+            compScoreDiv.textContent = compScore;
+            if (playerScore === 5) result.textContent = "Player Wins the GAME";
+            else if (compScore === 5) result.textContent = "Computer Wins the GAME";
+        }
+    });
+}); // console.log(playRound(playerSelection, computerSelection));
 
 //# sourceMappingURL=index.c4775257.js.map
