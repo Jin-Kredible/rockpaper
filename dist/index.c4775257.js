@@ -1,6 +1,7 @@
 const playerSelection = "rock";
 const computerSelection = getComputerChoice();
 const buttons = document.querySelectorAll(".btn");
+const replay = document.querySelector(".btn-replay");
 let result = document.querySelector("#result");
 let compScoreDiv = document.querySelector("#compScore");
 let playerScoreDiv = document.querySelector("#playerScore");
@@ -56,6 +57,13 @@ buttons.forEach((button)=>{
             else if (compScore === 5) result.textContent = "Computer Wins the GAME";
         }
     });
+});
+replay.addEventListener("click", ()=>{
+    playerScore = 0;
+    compScore = 0;
+    compScoreDiv.textContent = "0";
+    playerScoreDiv.textContent = "0";
+    result.textContent = "";
 }); // console.log(playRound(playerSelection, computerSelection));
 
 //# sourceMappingURL=index.c4775257.js.map
